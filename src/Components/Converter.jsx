@@ -4,6 +4,7 @@ import ConvertedRate from "./ConvertedRate";
 
 const Converter = () => {
   const appID = "a76c1baadef6487f86699765ae520b1d";
+  const apiURL = `https://openexchangerates.org/api/latest.json?app_id=${appID}`;
   const [rates, setRates] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -14,9 +15,7 @@ const Converter = () => {
 
   const fetchCurrencyRates = async () => {
     try {
-      const response = await fetch(
-        `https://openexchangerates.org/api/latest.json?app_id=${appID}`
-      );
+      const response = await fetch(apiURL);
       if (!response.ok) {
         console.log("Network response was not ok");
       }
@@ -90,8 +89,8 @@ const Converter = () => {
                     ))}
                   </select>
                 </div>
-               </form>
-               
+              </form>
+
               {convertedAmount && (
                 <ConvertedRate
                   amount={amount}
@@ -99,14 +98,12 @@ const Converter = () => {
                   convertedAmount={convertedAmount}
                   toCurrency={toCurrency}
                 />
-                
               )}
-              
             </>
           )}
         </div>
-        <h3>Developed by : MASHOBTECHIE</h3>
       </div>
+      <h3>Developed by : MASHOBTECHIE</h3>
     </>
   );
 };
